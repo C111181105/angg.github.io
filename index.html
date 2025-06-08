@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>游泳卡路里計算器</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, select, button { margin: 8px 0; padding: 8px; width: 100%; max-width: 300px; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🏊‍♂️ 游泳消耗卡路里計算器</h1>
+  <p><h3>
+    各位大家好，我叫王建翔，最近開始接觸游泳運動。<br>
+    不過我常常好奇：游泳到底能消耗多少熱量呢？<br>
+    為了幫助自己與同樣有興趣的朋友，我製作了這個簡易的 <strong>游泳熱量計算器</strong>，
+    讓大家可以根據泳式、時間和體重快速估算自己運動後的熱量消耗！🧠💪
+  </h3></p>
+  <p><img src="87.PNG" alt="游泳MET值參考" style="max-width: 100%; height: auto; margin-top: 20px;"></p>
+  <p><img src="88.PNG" alt="游泳計算" style="max-width: 100%; height: auto; margin-top: 20px;"></p>
+  <label>體重（kg）：</label>
+  <input type="number" id="weight" placeholder="例如：70">
+
+  <label>游泳時間（分鐘）：</label>
+  <input type="number" id="duration" placeholder="例如：30">
+
+  <label>泳式：</label>
+  <select id="style">
+    <option value="8">自由式（中等）</option>
+    <option value="10">自由式（快速）</option>
+    <option value="10.3">蛙式</option>
+    <option value="9.5">仰式</option>
+    <option value="11">蝶式</option>
+    <option value="3.5">輕鬆戲水</option>
+  </select>
+
+  <button onclick="calculate()">計算卡路里</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculate() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const minutes = parseFloat(document.getElementById('duration').value);
+      const met = parseFloat(document.getElementById('style').value);
+
+      if (isNaN(weight) || isNaN(minutes)) {
+        document.getElementById('result').textContent = "請輸入正確的體重與時間";
+        return;
+      }
+
+      const hours = minutes / 60;
+      const calories = met * weight * hours;
+      document.getElementById('result').textContent = `估計消耗熱量：約 ${calories.toFixed(2)} 大卡`;
+    }
+  </script>
+</body>
+
+<style>
+  body {
+    background-image: url('89.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff; /* 背景淺色時建議設文字為深色，反之亦然 */
+    text-shadow: 1px 1px 2px #000; /* 讓白字更清楚 */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+</style>
+
+</html>
